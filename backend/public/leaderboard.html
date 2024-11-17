@@ -32,11 +32,11 @@
             max-width: 800px;
             margin: 0 auto;
         }
-        
+
         .podium-card:hover {
             transform: translateY(-5px);
         }
-        
+
         .avatar {
             width: 48px;
             height: 48px;
@@ -44,7 +44,7 @@
             object-fit: cover;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        
+
         .podium {
             display: flex;
             align-items: flex-end;
@@ -55,13 +55,13 @@
             max-width: 800px;
             margin: 40px auto;
         }
-        
+
         .podium-item {
             text-align: center;
             position: relative;
             animation: float 3s ease-in-out infinite;
         }
-        
+
         .podium-1st {
             height: 160px;
             width: 120px;
@@ -71,7 +71,7 @@
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(253, 185, 49, 0.4);
         }
-        
+
         .podium-1st::after {
             content: '';
             position: absolute;
@@ -83,7 +83,7 @@
             transform: skewX(-25deg);
             animation: shine 3s infinite;
         }
-        
+
         .podium-2nd {
             height: 120px;
             width: 120px;
@@ -91,7 +91,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(192, 192, 192, 0.4);
         }
-        
+
         .podium-3rd {
             height: 100px;
             width: 120px;
@@ -111,9 +111,9 @@
         }
 
         .rank-badge {
-            width: 24px;
+            width: 32px;
             height: 24px;
-            border-radius: 50%;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -148,10 +148,33 @@
         .header {
             text-align: center;
             padding: 40px 0;
-            background: linear-gradient(45deg, #2196F3, #21CBF3);
+            background: linear-gradient(45deg, #77ed7e, #77ed7e);
             color: white;
             margin-bottom: 40px;
             border-radius: 0 0 16px 16px;
+        }
+
+        .trend-icon {
+            font-size: 12px;
+            margin-left: 4px;
+        }
+        
+        .trend-up {
+            color: #22c55e;
+        }
+        
+        .trend-down {
+            color: #ef4444;
+        }
+        
+        .trend-same {
+            color: #9ca3af;
+        }
+
+        .grid-cols-4 {
+            display: grid;
+            grid-template-columns: 0.8fr 1.4fr 0.9fr 0.9fr;
+            grid-column-gap: 24px;
         }
     </style>
 </head>
@@ -172,9 +195,10 @@
                     <div class="podium-2nd">
                         <p class="pt-2 text-white">54 kWh</p>
                         <p class="text-sm text-white">$60 saved</p>
+                        <p class="text-sm text-white font-bold">2nd</p>
                     </div>
                 </div>
-            
+
                 <!-- First Place -->
                 <div class="podium-item animate__animated animate__fadeInUp">
                     <div class="trophy-icon">🏆</div>
@@ -183,9 +207,10 @@
                     <div class="podium-1st">
                         <p class="pt-2 text-white">61 kWh</p>
                         <p class="text-sm text-white">$100 saved</p>
+                        <p class="text-sm text-white font-bold">1st</p>
                     </div>
                 </div>
-            
+
                 <!-- Third Place -->
                 <div class="podium-item animate__animated animate__fadeInUp animate__delay-2s">
                     <div class="trophy-icon">🥉</div>
@@ -194,6 +219,7 @@
                     <div class="podium-3rd">
                         <p class="pt-2 text-white">52 kWh</p>
                         <p class="text-sm text-white">$40 saved</p>
+                        <p class="text-sm text-white font-bold">3rd</p>
                     </div>
                 </div>
             </div>
@@ -201,13 +227,13 @@
 
         <!-- Top 10 Companies List -->
         <div class="podium-card animate__animated animate__fadeIn animate__delay-2s">
-            <h2 class="text-xl font-semibold mb-6">Top 10 Energy Savers</h2>
+            <h2 class="text-xl font-semibold mb-6 text-center">Top 10 Energy Savers</h2>
             <div class="space-y-4">
                 <!-- Headers -->
-                <div class="grid grid-cols-4 items-center py-2 px-4 bg-gray-100 rounded-lg font-semibold">
+                <div class="grid grid-cols-4 items-center py-2 px-4 rounded-lg font-semibold" style="background-color: #77ed7e;">
                     <div>Rank</div>
                     <div>Company</div>
-                    <div>Energy Saved</div>
+                    <div class="text-center">Energy Saved</div>
                     <div class="text-right">Points</div>
                 </div>
 
@@ -215,84 +241,91 @@
                 <div class="leaderboard-row grid grid-cols-4 items-center">
                     <div class="flex items-center gap-2">
                         <div class="rank-badge">4</div>
+                        <span class="trend-icon trend-up">▲</span>
                     </div>
                     <div class="flex items-center gap-2">
                         <img src="https://via.placeholder.com/32" alt="Solar Power Ltd" class="w-8 h-8 rounded-full">
                         <span>Solar Power Ltd</span>
                     </div>
-                    <div>24.5 kWh/day</div>
+                    <div class="text-center">24.5 kWh/day</div>
                     <div class="text-right font-medium">48 PTS</div>
                 </div>
 
                 <div class="leaderboard-row grid grid-cols-4 items-center">
                     <div class="flex items-center gap-2">
                         <div class="rank-badge">5</div>
+                        <span class="trend-icon trend-down">▼</span>
                     </div>
                     <div class="flex items-center gap-2">
                         <img src="https://via.placeholder.com/32" alt="Wind Energy Co" class="w-8 h-8 rounded-full">
                         <span>Wind Energy Co</span>
                     </div>
-                    <div>22.0 kWh/day</div>
+                    <div class="text-center">22.0 kWh/day</div>
                     <div class="text-right font-medium">45 PTS</div>
                 </div>
 
                 <div class="leaderboard-row grid grid-cols-4 items-center">
                     <div class="flex items-center gap-2">
                         <div class="rank-badge">6</div>
+                        <span class="trend-icon trend-same">▬</span>
                     </div>
                     <div class="flex items-center gap-2">
                         <img src="https://via.placeholder.com/32" alt="Bioenergy Corp" class="w-8 h-8 rounded-full">
                         <span>Bioenergy Corp</span>
                     </div>
-                    <div>21.0 kWh/day</div>
+                    <div class="text-center">21.0 kWh/day</div>
                     <div class="text-right font-medium">42 PTS</div>
                 </div>
 
                 <div class="leaderboard-row grid grid-cols-4 items-center">
                     <div class="flex items-center gap-2">
                         <div class="rank-badge">7</div>
+                        <span class="trend-icon trend-up">▲</span>
                     </div>
                     <div class="flex items-center gap-2">
                         <img src="https://via.placeholder.com/32" alt="Energy Solutions" class="w-8 h-8 rounded-full">
                         <span>Energy Solutions</span>
                     </div>
-                    <div>20.0 kWh/day</div>
+                    <div class="text-center">20.0 kWh/day</div>
                     <div class="text-right font-medium">40 PTS</div>
                 </div>
 
                 <div class="leaderboard-row grid grid-cols-4 items-center">
                     <div class="flex items-center gap-2">
                         <div class="rank-badge">8</div>
+                        <span class="trend-icon trend-down">▼</span>
                     </div>
                     <div class="flex items-center gap-2">
                         <img src="https://via.placeholder.com/32" alt="Eco Power" class="w-8 h-8 rounded-full">
                         <span>Eco Power</span>
                     </div>
-                    <div>19.0 kWh/day</div>
+                    <div class="text-center">19.0 kWh/day</div>
                     <div class="text-right font-medium">38 PTS</div>
                 </div>
 
                 <div class="leaderboard-row grid grid-cols-4 items-center">
                     <div class="flex items-center gap-2">
                         <div class="rank-badge">9</div>
+                        <span class="trend-icon trend-same">▬</span>
                     </div>
                     <div class="flex items-center gap-2">
                         <img src="https://via.placeholder.com/32" alt="Green Tech" class="w-8 h-8 rounded-full">
                         <span>Green Tech</span>
                     </div>
-                    <div>18.0 kWh/day</div>
+                    <div class="text-center">18.0 kWh/day</div>
                     <div class="text-right font-medium">36 PTS</div>
                 </div>
 
                 <div class="leaderboard-row grid grid-cols-4 items-center">
                     <div class="flex items-center gap-2">
                         <div class="rank-badge">10</div>
+                        <span class="trend-icon trend-up">▲</span>
                     </div>
                     <div class="flex items-center gap-2">
                         <img src="https://via.placeholder.com/32" alt="Renewable Ventures" class="w-8 h-8 rounded-full">
                         <span>Renewable Ventures</span>
                     </div>
-                    <div>17.0 kWh/day</div>
+                    <div class="text-center">17.0 kWh/day</div>
                     <div class="text-right font-medium">34 PTS</div>
                 </div>
             </div>
