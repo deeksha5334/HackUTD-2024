@@ -1,0 +1,28 @@
+#about
+{
+    overflow: hidden;
+    width: 100vw;
+    max-width: 65rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin: -10rem auto 0 auto; 
+}
+
+.aboutTitle
+{
+    font-size: 3rem;
+    font-weight: 500;
+    padding-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.aboutDesc
+{
+    font-size: 1rem;
+    font-weight: 200;
+    max-width: 100rem;
+    padding: 0 2rem;
+    letter-spacing: 1px;
+}

@@ -1,0 +1,13 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(90deg, 
+        #B1C1C0 0%,
+        #DCEDB9 25%,
+        #D2E59E 50%,
+        #CBD081 75%,
+        #918868 100%
+    );
+    background-attachment: fixed;
+}
