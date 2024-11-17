@@ -61,37 +61,52 @@
                 <p class="text-ash_gray-400 mb-8">Already have an account? <a href="/login.html"
                         class="text-tea_green-300 hover:text-tea_green-400">Log in</a></p>
 
-                <form action ="/check" method="post">
-                    <div class="flex gap-4 mb-4">
-                        <input type="text" placeholder="First name"
-                            class="bg-ash_gray-300 text-white p-3 rounded-lg w-full">
-                        <input type="text" placeholder="Last name"
-                            class="bg-ash_gray-300 text-white p-3 rounded-lg w-full">
-                    </div>
+                <!-- Replace the existing form in register.html with this -->
+<form action="/register" method="POST">
+    <div class="flex gap-4 mb-4">
+        <input type="text" name="firstName" placeholder="First name" required
+            class="bg-ash_gray-300 text-white p-3 rounded-lg w-full">
+        <input type="text" name="lastName" placeholder="Last name" required
+            class="bg-ash_gray-300 text-white p-3 rounded-lg w-full">
+    </div>
 
-                    <input type="email" placeholder="Email"
-                        class="bg-ash_gray-300 text-white p-3 rounded-lg w-full mb-4">
+    <input type="email" name="email" placeholder="Email" required
+        class="bg-ash_gray-300 text-white p-3 rounded-lg w-full mb-4">
 
-                    <div class="relative">
-                        <input type="password" name="password" placeholder="Enter your password"
-                            class="bg-ash_gray-300 text-white p-3 rounded-lg w-full input-field" >
-                        <button type="button"
-                            class="absolute right-3 top-1/2 -translate-y-1/2 text-ash_gray-500">Show</button>
-                    </div>
+    <div class="relative">
+        <input type="password" name="password" placeholder="Enter your password" required
+            class="bg-ash_gray-300 text-white p-3 rounded-lg w-full input-field">
+        <button type="button" onclick="togglePassword()"
+            class="absolute right-3 top-1/2 -translate-y-1/2 text-ash_gray-500">Show</button>
+    </div>
 
-                    <div class="flex items-center gap-2 mt-4">
-                        <input type="checkbox" id="terms" class="rounded bg-ash_gray-300">
-                        <label for="terms" class="text-ash_gray-400">I agree to the <a href="#"
-                                class="text-tea_green-300 hover:text-tea_green-400">Terms & Conditions</a></label>
-                    </div>
+    <div class="flex items-center gap-2 mt-4">
+        <input type="checkbox" id="terms" name="terms" required class="rounded bg-ash_gray-300">
+        <label for="terms" class="text-ash_gray-400">I agree to the <a href="#"
+                class="text-tea_green-300 hover:text-tea_green-400">Terms & Conditions</a></label>
+    </div>
 
-                    <button type="submit"
-                        class="bg-citron-500 text-ash_gray-100 p-3 rounded-lg w-full mt-6 hover:bg-citron-600">Create
-                        account</button>
-                </form>
+    <button type="submit"
+        class="bg-citron-500 text-ash_gray-100 p-3 rounded-lg w-full mt-6 hover:bg-citron-600">Create
+        account</button>
+</form>
             </div>
         </div>
     </div>
+    <script>
+        function togglePassword() {
+            const passwordInput = document.querySelector('input[name="password"]');
+            const toggleButton = document.querySelector('button[onclick="togglePassword()"]');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleButton.textContent = 'Hide';
+            } else {
+                passwordInput.type = 'password';
+                toggleButton.textContent = 'Show';
+            }
+        }
+    </script>
 </body>
 
 </html>
