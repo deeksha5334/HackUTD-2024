@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Energy Leaderboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .podium-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .podium {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .podium-item {
+            text-align: center;
+            position: relative;
+        }
+        
+        .podium-1st {
+            height: 160px;
+            width: 120px;
+            background: #FEF3C7;
+            border-radius: 8px;
+        }
+        
+        .podium-2nd {
+            height: 120px;
+            width: 120px;
+            background: #F3F4F6;
+            border-radius: 8px;
+        }
+        
+        .podium-3rd {
+            height: 100px;
+            width: 120px;
+            background: #FDE8E7;
+            border-radius: 8px;
+        }
+
+        .rank-badge {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="max-w-3xl mx-auto p-6">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold">Company Energy Leaderboard</h1>
+            <button class="text-gray-500 hover:text-gray-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Podium Display -->
+        <div class="podium-card mb-8">
+            <h2 class="text-xl font-semibold text-center mb-6">Top Energy Savers!</h2>
+            <div class="podium">
+                <!-- Second Place -->
+                <div class="podium-item">
+                    <img src="/api/placeholder/48/48" alt="Company 2" class="avatar mx-auto mb-2">
+                    <p class="font-medium">Tech Corp</p>
+                    <div class="podium-2nd">
+                        <p class="pt-2">54 kWh</p>
+                        <p class="text-sm text-gray-500">$60 saved</p>
+                    </div>
+                </div>
+
+                <!-- First Place -->
+                <div class="podium-item">
+                    <img src="/api/placeholder/48/48" alt="Company 1" class="avatar mx-auto mb-2">
+                    <p class="font-medium">Green Inc</p>
+                    <div class="podium-1st">
+                        <p class="pt-2">61 kWh</p>
+                        <p class="text-sm text-gray-500">$100 saved</p>
+                    </div>
+                </div>
+
+                <!-- Third Place -->
+                <div class="podium-item">
+                    <img src="/api/placeholder/48/48" alt="Company 3" class="avatar mx-auto mb-2">
+                    <p class="font-medium">Eco Solutions</p>
+                    <div class="podium-3rd">
+                        <p class="pt-2">52 kWh</p>
+                        <p class="text-sm text-gray-500">$40 saved</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rankings Table -->
+        <div class="podium-card">
+            <div class="space-y-4">
+                <!-- Table Headers -->
+                <div class="grid grid-cols-4 text-sm text-gray-500 pb-2 border-b">
+                    <div>Place</div>
+                    <div>Name</div>
+                    <div>Energy Usage</div>
+                    <div class="text-right">Points</div>
+                </div>
+
+                <!-- Table Rows -->
+                <div class="grid grid-cols-4 items-center py-3">
+                    <div class="flex items-center gap-2">
+                        <div class="rank-badge bg-yellow-100 text-yellow-800">1st</div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <img src="/api/placeholder/32/32" alt="Company" class="w-8 h-8 rounded-full">
+                        <span>Green Inc</span>
+                    </div>
+                    <div>20.5 kWh/day</div>
+                    <div class="text-right font-medium">61 PTS</div>
+                </div>
+
+                <div class="grid grid-cols-4 items-center py-3">
+                    <div class="flex items-center gap-2">
+                        <div class="rank-badge bg-gray-100 text-gray-800">2nd</div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <img src="/api/placeholder/32/32" alt="Company" class="w-8 h-8 rounded-full">
+                        <span>Tech Corp</span>
+                    </div>
+                    <div>22.3 kWh/day</div>
+                    <div class="text-right font-medium">54 PTS</div>
+                </div>
+
+                <div class="grid grid-cols-4 items-center py-3">
+                    <div class="flex items-center gap-2">
+                        <div class="rank-badge bg-rose-100 text-rose-800">3rd</div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <img src="/api/placeholder/32/32" alt="Company" class="w-8 h-8 rounded-full">
+                        <span>Eco Solutions</span>
+                    </div>
+                    <div>23.1 kWh/day</div>
+                    <div class="text-right font-medium">52 PTS</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
