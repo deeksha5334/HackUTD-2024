@@ -9,8 +9,8 @@ const port = 3000;
 
 var userIsAuthorised = false;
 
-app.get("/index.html", (req, res) => {
-  res.sendFile(__dirname + "/public/index.html");
+app.get("/login.html", (req, res) => {
+  res.sendFile(__dirname + "/public/login.html");
 });
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -25,14 +25,14 @@ function passwordCheck(req, res, next) {
 app.use(passwordCheck);
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/index2.html");
+  res.sendFile(__dirname + "/public/register.html");
 });
 
 app.post("/check", (req, res) => {
   if (userIsAuthorised) {
     res.sendFile(__dirname + "/public/dashboard.html");
   } else {
-    res.sendFile(__dirname + "/public/index2.html");
+    res.sendFile(__dirname + "/public/register.html");
     //Alternatively res.redirect("/");
   }
 });
