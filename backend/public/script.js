@@ -37,22 +37,18 @@ const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        // Here you would typically send the form data to a server
+      
         alert('Thank you for your message! We will get back to you soon.');
         this.reset();
     });
 }
 
-// Add animation classes to elements
+
 document.querySelectorAll('.feature-card, .about-item').forEach(item => {
     item.classList.add('animate-on-scroll');
 });
 
-// Initialize AOS (Animate on Scroll) library if you decide to use it
-// Uncomment the following line if you've included AOS in your project
-// AOS.init();
 
-// Optional: Add a scroll-to-top button
 const scrollToTopButton = document.createElement('button');
 scrollToTopButton.innerHTML = '&uarr;';
 scrollToTopButton.className = 'scroll-to-top';
@@ -65,7 +61,7 @@ scrollToTopButton.addEventListener('click', () => {
     });
 });
 
-// Chat toggle function remains the same
+
 function toggleChat() {
     const chatBody = document.getElementById('chatBody');
     const chatToggle = document.getElementById('chatToggle');
