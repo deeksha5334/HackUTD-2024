@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <a href="/leaderboard" class="text-blue-600 hover:text-blue-800">View Leaderboard</a>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Energy Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ash_gray: { DEFAULT: '#b1c1c0', 100: '#212929', 200: '#425352', 300: '#637c7a', 400: '#89a19f', 500: '#b1c1c0', 600: '#c2cecd', 700: '#d1dada', 800: '#e0e6e6', 900: '#f0f3f3' },
+                        tea_green: { DEFAULT: '#dcedb9', 100: '#334311', 200: '#658723', 300: '#98ca34', 400: '#badc77', 500: '#dcedb9', 600: '#e3f1c8', 700: '#eaf4d6', 800: '#f1f8e3', 900: '#f8fbf1' },
+                        citron: { DEFAULT: '#cbd081', 100: '#2f3112', 200: '#5e6224', 300: '#8d9337', 400: '#b7be4f', 500: '#cbd081', 600: '#d5da9a', 700: '#e0e3b3', 800: '#eaeccc', 900: '#f5f6e6' },
+                        moss_green: { DEFAULT: '#918868', 100: '#1d1b15', 200: '#3a372a', 300: '#57523f', 400: '#746d54', 500: '#918868', 600: '#a8a086', 700: '#bdb8a4', 800: '#d3d0c3', 900: '#e9e7e1' }
+                    }
+                }
+            }
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         /* Custom colors */
@@ -43,11 +57,22 @@
         <div class="mb-8">
             <img src="/api/placeholder/40/40" alt="Logo" class="rounded-lg" />
         </div>
-        <button class="p-3 rounded-lg text-white hover:bg-gray-700">
+        <button class="p-3 rounded-lg text-white hover:bg-tea_green-700">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
             </svg>
         </button>
+        <!-- Replace or add this in your nav-sidebar -->
+        <a href="/goals" class="p-3 rounded-lg text-white hover:bg-tea_green-700">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+            </svg>
+        </a>
+        <a href="/leaderboard" class="p-3 rounded-lg text-white hover:bg-gray-700">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+            </svg>
+        </a>
     </nav>
 
     <!-- Main Content -->
@@ -136,6 +161,7 @@
                 </div>
             </div>
         </div>
+        
     </div>
 
     <script>
@@ -148,7 +174,7 @@
                 datasets: [{
                     label: 'Energy Usage',
                     data: [12000, 19000, 15000, 17000, 14000, 13000, 16000],
-                    borderColor: '#3b82f6',
+                    borderColor: '#cbd081',  // citron color,
                     tension: 0.4,
                     fill: false
                 }]
@@ -185,7 +211,7 @@
                 datasets: [{
                     label: 'Usage',
                     data: [30, 25, 45, 65, 55, 40],
-                    backgroundColor: '#93c5fd'
+                    backgroundColor: '#b1c1c0' 
                 }]
             },
             options: {
@@ -210,6 +236,113 @@
                 }
             }
         });
+        // Add this to your existing <script> section
+function scrollToGoals() {
+    document.getElementById('goals-section').scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+    });
+}
+
+// Goals functionality
+let goals = [
+    { id: 1, description: 'Reduce Energy Usage by 10%', completionDate: '2024-12-31', completed: false },
+    { id: 2, description: 'Install Solar Panels', completionDate: '2024-06-30', completed: false }
+];
+
+let editingGoal = null;
+
+function renderGoals() {
+    const tbody = document.getElementById('goalsTableBody');
+    tbody.innerHTML = '';
+    
+    goals.sort((a, b) => new Date(a.completionDate) - new Date(b.completionDate))
+         .forEach(goal => {
+        const tr = document.createElement('tr');
+        tr.className = goal.completed ? 'bg-green-100' : 'bg-yellow-50';
+        
+        if (editingGoal && editingGoal.id === goal.id) {
+            tr.innerHTML = `
+                <td class="p-2"><input type="text" value="${editingGoal.description}" id="edit-description-${goal.id}" class="p-1 border rounded w-full"></td>
+                <td class="p-2"><input type="date" value="${editingGoal.completionDate}" id="edit-date-${goal.id}" class="p-1 border rounded"></td>
+                <td class="p-2">
+                    <button onclick="handleUpdateGoal(${goal.id})" class="px-2 py-1 bg-tea_green-500 text-white rounded mr-2">Save</button>
+                    <button onclick="cancelEdit()" class="px-2 py-1 bg-ash_gray-500 text-white rounded">Cancel</button>
+                </td>
+            `;
+        } else {
+            tr.innerHTML = `
+                <td class="p-2">${goal.description}</td>
+                <td class="p-2">${goal.completionDate}</td>
+                <td class="p-2">
+                    <button onclick="handleEditGoal(${goal.id})" class="px-2 py-1 bg-tea_green-500 text-white rounded mr-2">Edit</button>
+                    <button onclick="handleDeleteGoal(${goal.id})" class="px-2 py-1 bg-red-500 text-white rounded mr-2">Delete</button>
+                    ${!goal.completed ? `<button onclick="handleMarkCompleted(${goal.id})" class="px-2 py-1 bg-blue-500 text-white rounded">Complete</button>` : ''}
+                </td>
+            `;
+        }
+        tbody.appendChild(tr);
+    });
+}
+
+function handleAddGoal() {
+    const description = document.getElementById('goalDescription').value;
+    const completionDate = document.getElementById('goalDate').value;
+    
+    if (description && completionDate) {
+        const newId = goals.length > 0 ? Math.max(...goals.map(g => g.id)) + 1 : 1;
+        goals.push({
+            id: newId,
+            description,
+            completionDate,
+            completed: false
+        });
+        
+        document.getElementById('goalDescription').value = '';
+        document.getElementById('goalDate').value = '';
+        
+        renderGoals();
+    }
+}
+
+function handleEditGoal(id) {
+    editingGoal = goals.find(goal => goal.id === id);
+    renderGoals();
+}
+
+function handleUpdateGoal(id) {
+    const newDescription = document.getElementById(`edit-description-${id}`).value;
+    const newDate = document.getElementById(`edit-date-${id}`).value;
+    
+    goals = goals.map(goal => 
+        goal.id === id 
+            ? {...goal, description: newDescription, completionDate: newDate}
+            : goal
+    );
+    
+    editingGoal = null;
+    renderGoals();
+}
+
+function cancelEdit() {
+    editingGoal = null;
+    renderGoals();
+}
+
+function handleDeleteGoal(id) {
+    goals = goals.filter(goal => goal.id !== id);
+    renderGoals();
+}
+
+function handleMarkCompleted(id) {
+    goals = goals.map(goal =>
+        goal.id === id ? {...goal, completed: true} : goal
+    );
+    renderGoals();
+}
+
+// Initialize goals table
+renderGoals();
     </script>
 </body>
 </html>

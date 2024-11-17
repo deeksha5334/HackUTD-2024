@@ -5,8 +5,6 @@ import { fileURLToPath } from "url";
 import OpenAI from "openai";
 import cors from 'cors';
 
-
-
 const users = [];
 
 const app = express();
@@ -66,6 +64,15 @@ app.post("/register", (req, res) => {
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/home.html");
+});
+
+app.get("/goals", (req, res) => {
+  res.sendFile(__dirname + "/public/goals.html");
+});
+
+// Add this with your other routes
+app.get("/leaderboard", (req, res) => {
+  res.sendFile(__dirname + "/public/leaderboard.html");
 });
 
 
