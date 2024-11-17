@@ -1,5 +1,13 @@
-// Initialize GSAP ScrollTrigger
-gsap.registerPlugin(ScrollTrigger);
+// Smooth scrolling for navbar links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
 
 // Navbar scroll effect
 window.addEventListener('scroll', () => {
@@ -7,47 +15,60 @@ window.addEventListener('scroll', () => {
     header.classList.toggle('scrolled', window.scrollY > 0);
 });
 
-// Animate hero content
-gsap.from('.hero-content', {
-    opacity: 0,
-    y: 50,
-    duration: 1,
-    ease: 'power3.out'
+// Animate elements on scroll
+function animateOnScroll() {
+    const elements = document.querySelectorAll('.animate-on-scroll');
+    
+    elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (elementTop < windowHeight - 100) {
+            element.classList.add('animated');
+        }
+    });
+}
+
+window.addEventListener('scroll', animateOnScroll);
+window.addEventListener('load', animateOnScroll);
+
+// Form submission
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Here you would typically send the form data to a server
+        alert('Thank you for your message! We will get back to you soon.');
+        this.reset();
+    });
+}
+
+// Add animation classes to elements
+document.querySelectorAll('.feature-card, .about-item').forEach(item => {
+    item.classList.add('animate-on-scroll');
 });
 
-gsap.from('.hero-image', {
-    opacity: 0,
-    x: 50,
-    duration: 1,
-    delay: 0.5,
-    ease: 'power3.out'
+// Initialize AOS (Animate on Scroll) library if you decide to use it
+// Uncomment the following line if you've included AOS in your project
+// AOS.init();
+
+// Optional: Add a scroll-to-top button
+const scrollToTopButton = document.createElement('button');
+scrollToTopButton.innerHTML = '&uarr;';
+scrollToTopButton.className = 'scroll-to-top';
+document.body.appendChild(scrollToTopButton);
+
+scrollToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
 });
 
-// Animate feature cards
-gsap.from('.feature-card', {
-    scrollTrigger: {
-        trigger: '#features',
-        start: 'top 80%'
-    },
-    opacity: 0,
-    y: 50,
-    duration: 0.8,
-    stagger: 0.2,
-    ease: 'power3.out'
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        scrollToTopButton.style.display = 'block';
+    } else {
+        scrollToTopButton.style.display = 'none';
+    }
 });
-
-// Parallax effect for about section
-// Parallax effect for about section
-gsap.to('.parallax-content', {
-    scrollTrigger: {
-        trigger: '.parallax-section',
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: true
-    },
-    y: -50,
-    ease: 'none'
-});
-
-
-
