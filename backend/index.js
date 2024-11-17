@@ -28,7 +28,7 @@ app.get("/login.html", (req, res) => {
   res.sendFile(__dirname + "/public/login.html");
 });
 
-// Add this new route
+
 app.post("/register", (req, res) => {
   const { firstName, lastName, email, password, terms } = req.body;
 
@@ -96,7 +96,7 @@ app.post("/chat", async (req, res) => {
   try {
       const userMessage = req.body.message;
 
-      // Create a system message to give context about Eco Track
+      
       const systemMessage = `You are EcoBot, a helpful assistant for Eco Track - an energy management platform. 
       Key features include: real-time monitoring, goal setting & tracking, graphical analysis, and competitive benchmarking. 
       Keep responses brief and friendly. If asked about pricing or specific technical details, 
