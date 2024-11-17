@@ -37,6 +37,14 @@ app.post("/check", (req, res) => {
   }
 });
 
+app.get("/leaderboard", (req, res) => {
+  if (userIsAuthorised) {
+      res.sendFile(__dirname + "/public/leaderboard.html");
+  } else {
+      res.redirect("/");
+  }
+});
+
 app.listen(port, () => {
   console.log(`Listening on port sneha ${port}`);
 });
