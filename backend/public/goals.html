@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Goals</title>
+    <style>
+.goals {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+    padding: 20px;
+}
+
+.goalsTitle {
+    font-size: 3rem;
+    font-weight: 500;
+    padding-top: 3rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.add-goal-form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 800px;
+}
+
+.add-goal-form input {
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: white;
+    color: black;
+}
+
+.add-goal-form button {
+    padding: 0.5rem 1rem;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.goals-table {
+    width: 100%;
+    max-width: 800px;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.goals-table th,
+.goals-table td {
+    border: 1px solid black;
+    padding: 0.5rem;
+    text-align: left;
+    color: black;
+}
+
+.goals-table th {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.goals-table input {
+    width: 100%;
+    padding: 0.3rem;
+    border: 1px solid black;
+    border-radius: 4px;
+    background-color: white;
+    color: black;
+}
+
+.goals-table button {
+    padding: 0.3rem 0.5rem;
+    margin-right: 0.3rem;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.goals-table button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.goals-table td {
+    padding: 10px;
+}
+    </style>
+</head>
+<body>
+    <div class="goals">
+        <h1 class="goalsTitle">Company Goals</h1>
+        
+        <div class="add-goal-form">
+            <input type="text" id="goalDescription" placeholder="Goal">
+            <input type="date" id="goalDate">
+            <button onclick="handleAddGoal()">Add Goal</button>
+        </div>
+
+        <table class="goals-table">
+            <thead>
+                <tr>
+                    <th>Goal</th>
+                    <th>Expected Completion Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="goalsTableBody"></tbody>
+        </table>
+    </div>
+
+    <script>
+let goals = [
+    { id: 1, description: 'Learn React', completionDate: '2024-12-31', completed: false },
+    { id: 2, description: 'Build a project', completionDate: '2024-06-30', completed: false }
+];
+
+let editingGoal = null;
+
+function renderGoals() {
+    const tbody = document.getElementById('goalsTableBody');
+    tbody.innerHTML = '';
+    
+    goals.sort((a, b) => new Date(a.completionDate) - new Date(b.completionDate))
+         .forEach(goal => {
+        const tr = document.createElement('tr');
+        tr.style.backgroundColor = goal.completed ? '#90EE90' : '#ffff00';
+        
+        if (editingGoal && editingGoal.id === goal.id) {
+            tr.innerHTML = `
+                <td><input type="text" value="${editingGoal.description}" id="edit-description-${goal.id}"></td>
+                <td><input type="date" value="${editingGoal.completionDate}" id="edit-date-${goal.id}"></td>
+                <td>
+                    <button onclick="handleUpdateGoal(${goal.id})">Save</button>
+                    <button onclick="cancelEdit()">Cancel</button>
+                </td>
+            `;
+        } else {
+            tr.innerHTML = `
+                <td>${goal.description}</td>
+                <td>${goal.completionDate}</td>
+                <td>
+                    <button onclick="handleEditGoal(${goal.id})">Edit</button>
+                    <button onclick="handleDeleteGoal(${goal.id})">Delete</button>
+                    ${!goal.completed ? `<button onclick="handleMarkCompleted(${goal.id})">Mark Completed</button>` : ''}
+                </td>
+            `;
+        }
+        tbody.appendChild(tr);
+    });
+}
+
+function handleAddGoal() {
+    const description = document.getElementById('goalDescription').value;
+    const completionDate = document.getElementById('goalDate').value;
+    
+    if (description && completionDate) {
+        const newId = goals.length > 0 ? Math.max(...goals.map(g => g.id)) + 1 : 1;
+        goals.push({
+            id: newId,
+            description,
+            completionDate,
+            completed: false
+        });
+        
+        document.getElementById('goalDescription').value = '';
+        document.getElementById('goalDate').value = '';
+        
+        renderGoals();
+    }
+}
+
+function handleEditGoal(id) {
+    editingGoal = goals.find(goal => goal.id === id);
+    renderGoals();
+}
+
+function handleUpdateGoal(id) {
+    const newDescription = document.getElementById(`edit-description-${id}`).value;
+    const newDate = document.getElementById(`edit-date-${id}`).value;
+    
+    goals = goals.map(goal => 
+        goal.id === id 
+            ? {...goal, description: newDescription, completionDate: newDate}
+            : goal
+    );
+    
+    editingGoal = null;
+    renderGoals();
+}
+
+function cancelEdit() {
+    editingGoal = null;
+    renderGoals();
+}
+
+function handleDeleteGoal(id) {
+    goals = goals.filter(goal => goal.id !== id);
+    renderGoals();
+}
+
+function handleMarkCompleted(id) {
+    goals = goals.map(goal =>
+        goal.id === id ? {...goal, completed: true} : goal
+    );
+    renderGoals();
+}
+
+// Initial render
+renderGoals();
+    </script>
+</body>
+</html>
