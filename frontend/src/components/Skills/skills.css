@@ -1,0 +1,49 @@
+#skills {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25rem; /* Increased space from the projects section */
+}
+
+.skillsTitle {
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 30px; /* Increased space below title */
+    margin-top: 2rem; /* Added space above title */
+}
+
+.skillsContainer {
+    display: flex; /* Use flexbox to layout columns */
+    justify-content: space-between; /* Space columns evenly */
+    width: 100%; /* Full width for columns */
+    max-width: 1200px; /* Limit maximum width */
+}
+
+.skillsColumn {
+    flex: 1; /* Make columns take equal space */
+    margin: 0 1rem; /* Space between columns */
+    text-align: left; /* Align text to the left */
+}
+
+.skillsCategory {
+    margin-bottom: 30px; /* Increased space between categories */
+    margin-top: 10px; /* Added space above categories */
+}
+
+.skillsColumn h3 {
+    font-size: 1.5rem;
+    color: white; /* Category title color */
+    margin-bottom: 15px; /* Increased space below category title */
+}
+
+.skillItem {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    color: white; /* Set skill names to white */
+    font-size: 1.2rem; /* Skill name font size */
+    margin: 10px 0; /* Increased space between skill items */
+}
+
+.skillIcon {
+    margin-right: 15px; /* Increased space between icon and text */
+}

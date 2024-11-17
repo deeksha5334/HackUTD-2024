@@ -1,0 +1,52 @@
+#coursesAndCertifications {
+    margin-top: 5rem; /* Space from the skills section */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sectionTitle {
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 2rem; /* Space below the title */
+}
+
+.contentContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px; /* Limit maximum width */
+}
+
+.coursesContainer, .certificationsContainer {
+    flex: 1;
+    margin: 0 2rem; /* Space between the columns */
+    text-align: left;
+}
+
+.coursesContainer h3, .certificationsContainer h3 {
+    font-size: 1.8rem;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.courseItem, .certificationItem {
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 10px; /* Space between items */
+}
+
+.certificationItem {
+    display: flex;
+    flex-direction: column;
+}
+
+.certificationName {
+    font-weight: bold;
+}
+
+.certificationIssued {
+    font-size: 1rem;
+    color: #ccc; /* Lighter color for the issued date */
+    margin-top: 0.5rem;
+}
