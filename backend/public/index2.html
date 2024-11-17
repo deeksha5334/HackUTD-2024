@@ -1,46 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ash_gray: { DEFAULT: '#b1c1c0', 100: '#212929', 200: '#425352', 300: '#637c7a', 400: '#89a19f', 500: '#b1c1c0', 600: '#c2cecd', 700: '#d1dada', 800: '#e0e6e6', 900: '#f0f3f3' },
+                        tea_green: { DEFAULT: '#dcedb9', 100: '#334311', 200: '#658723', 300: '#98ca34', 400: '#badc77', 500: '#dcedb9', 600: '#e3f1c8', 700: '#eaf4d6', 800: '#f1f8e3', 900: '#f8fbf1' },
+                        citron: { DEFAULT: '#cbd081', 100: '#2f3112', 200: '#5e6224', 300: '#8d9337', 400: '#b7be4f', 500: '#cbd081', 600: '#d5da9a', 700: '#e0e3b3', 800: '#eaeccc', 900: '#f5f6e6' },
+                        moss_green: { DEFAULT: '#918868', 100: '#1d1b15', 200: '#3a372a', 300: '#57523f', 400: '#746d54', 500: '#918868', 600: '#a8a086', 700: '#bdb8a4', 800: '#d3d0c3', 900: '#e9e7e1' }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         body {
-            background-color: #2D2B35;
             min-height: 100vh;
         }
+
         .carousel-image {
-            background: linear-gradient(rgba(84, 79, 94, 0.5), rgba(84, 79, 94, 0.5)), url('/api/placeholder/800/600');
+            background: linear-gradient(rgba(145, 136, 104, 0.5), rgba(145, 136, 104, 0.5)), url('/api/placeholder/800/600');
             background-size: cover;
             background-position: center;
         }
-        .input-field {
-            background-color: #3A3841;
-            border: none;
-            color: white;
-            padding: 12px 16px;
-            border-radius: 8px;
-            width: 100%;
-            margin-bottom: 16px;
-        }
-        .input-field:focus {
-            outline: 2px solid #544F5E;
-        }
-        .submit-button {
-            background-color: #544F5E;
-            color: white;
-            padding: 12px;
-            border-radius: 8px;
-            width: 100%;
-            margin-top: 16px;
-        }
-        .submit-button:hover {
-            background-color: #6B6579;
-        }
     </style>
 </head>
-<body>
+
+<body class="bg-ash_gray-200">
     <div class="flex min-h-screen">
         <!-- Left Side - Carousel -->
         <div class="hidden md:block md:w-1/2 carousel-image relative">
@@ -61,34 +54,42 @@
             <div class="max-w-md w-full mx-auto">
                 <!-- Back to Website -->
                 <div class="flex justify-end mb-12">
-                    <a href="#" class="text-white hover:text-gray-300">Back to website →</a>
+                    <a href="#" class="text-tea_green-300 hover:text-tea_green-400">Back to website →</a>
                 </div>
 
                 <h1 class="text-4xl text-white font-medium mb-2">Create an account</h1>
-                <p class="text-gray-400 mb-8">Already have an account? <a href="#" class="text-white hover:text-gray-300">Log in</a></p>
+                <p class="text-ash_gray-400 mb-8">Already have an account? <a href="/index.html"
+                        class="text-tea_green-300 hover:text-tea_green-400">Log in</a></p>
 
                 <form action="/check" method="post">
                     <div class="flex gap-4 mb-4">
-                        <input type="text" placeholder="First name" class="input-field">
-                        <input type="text" placeholder="Last name" class="input-field">
+                        <input type="text" placeholder="First name"
+                            class="bg-ash_gray-300 text-white p-3 rounded-lg w-full">
+                        <input type="text" placeholder="Last name"
+                            class="bg-ash_gray-300 text-white p-3 rounded-lg w-full">
                     </div>
 
-                    <input type="email" placeholder="Email" class="input-field">
-                    
+                    <input type="email" placeholder="Email"
+                        class="bg-ash_gray-300 text-white p-3 rounded-lg w-full mb-4">
+
                     <div class="relative">
-                        <input type="password" name="password" placeholder="Enter your password" class="input-field">
+                        <input type="password" placeholder="Enter your password" class="input-field">
                         <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">Show</button>
                     </div>
 
                     <div class="flex items-center gap-2 mt-4">
-                        <input type="checkbox" id="terms" class="rounded bg-[#3A3841]">
-                        <label for="terms" class="text-gray-400">I agree to the <a href="#" class="text-white hover:text-gray-300">Terms & Conditions</a></label>
+                        <input type="checkbox" id="terms" class="rounded bg-ash_gray-300">
+                        <label for="terms" class="text-ash_gray-400">I agree to the <a href="#"
+                                class="text-tea_green-300 hover:text-tea_green-400">Terms & Conditions</a></label>
                     </div>
 
-                    <button type="submit" class="submit-button">Create account</button>
+                    <button type="submit"
+                        class="bg-citron-500 text-ash_gray-100 p-3 rounded-lg w-full mt-6 hover:bg-citron-600">Create
+                        account</button>
                 </form>
             </div>
         </div>
     </div>
 </body>
+
 </html>
