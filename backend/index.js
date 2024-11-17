@@ -9,6 +9,10 @@ const port = 3000;
 
 var userIsAuthorised = false;
 
+app.get("/index.html", (req, res) => {
+  res.sendFile(__dirname + "/public/index.html");
+});
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
 function passwordCheck(req, res, next) {
