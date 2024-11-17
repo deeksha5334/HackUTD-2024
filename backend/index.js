@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
 
 app.post("/check", (req, res) => {
   if (userIsAuthorised) {
-    res.sendFile(__dirname + "/public/secret.html");
+    res.sendFile(__dirname + "/public/dashboard.html");
   } else {
     res.sendFile(__dirname + "/public/index2.html");
     //Alternatively res.redirect("/");
